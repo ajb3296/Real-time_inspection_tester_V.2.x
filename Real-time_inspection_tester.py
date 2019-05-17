@@ -109,7 +109,7 @@ print("""
     핵심 알고리즘 실행. . .
 """)
 
-#Core algorithm
+# Core algorithm
 file = open("EICAR.TXT", 'w')
 file.write("X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*")
 file.close()
