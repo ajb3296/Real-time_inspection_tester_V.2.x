@@ -140,5 +140,4 @@ while True:
         os.system("pause")
         exit()
     num=num+1
-    file.close()
     time.sleep(1)
