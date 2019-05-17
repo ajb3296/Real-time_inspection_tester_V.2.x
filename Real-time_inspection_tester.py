@@ -14,13 +14,26 @@ while True:
 1. English - 영어
 2. 한글 - Korean
 
-Please enter number (1/2)""")
+""")
+    language = input("언어를 선택하세요 (1/2) : ")
+    if language==1 or language=="english" or language=="영어":
+        language="en"
+        break
+    elif language==2 or language=="한국어" or language=="한글" or language=="korean" or language=="korea":
+        language="ko"
+        break
+    else:
+        pass
+    
 
 os.system("title Real-time_inspection_test V.2.0")
 os.system("mode.com con cols=120 lines=40")
 num=0
 os.system("cls")
-print("""
+
+sec=3
+while True:
+    print("""
                                                    QESASDDS
                                                     .BgK.
                                                    :BBEE.
@@ -52,82 +65,15 @@ print("""
                              .JULJjj.
                                 :i:.
     Version : V.1.0
-    [ 3 ] 초 후 백신 테스트를 시작합니다.
-""")
-time.sleep(1)
-os.system("cls")
-print("""
-                                                   QESASDDS
-                                                    .BgK.
-                                                   :BBEE.
-                                               JBQYBBBsPAW
-                                                 EBBPi
-                                               .BBPP.
-                                              vBBgS
-                                             bBBgi
-                                            BBM2:
-                                          iBBPS
-                                         SBQQr
-                                        BBBq.
-                                      :J::L.
-                                     ru7i.
-                                    :usJ:
-                                   .BU..       ..
-                                  :BE       iKBBBBB
-                                  ;'     .dBBBBBBRBK
-                                 /    :vPEbSBBDSjv12
-                       .iv.     / .7IZDZU7. .SYssJv.
-                      :iUQM7   / ::7PUr....  71r.
-                     .....:uE/.  .........
-                      ....../EbL    ...
-                       ..  iPBBBB
-                         .v2uqRBBB:
-                          sj77IgBBBX
-                           rJvvIEBBBq
-                            .jY77rrLq
-                             .JULJjj.
-                                :i:.
-    Version : V.1.0
-    [ 2 ] 초 후 백신 테스트를 시작합니다.
-""")
-time.sleep(1)
-os.system("cls")
-print("""
-                                                   QESASDDS
-                                                    .BgK.
-                                                   :BBEE.
-                                               JBQYBBBsPAW
-                                                 EBBPi
-                                               .BBPP.
-                                              vBBgS
-                                             bBBgi
-                                            BBM2:
-                                          iBBPS
-                                         SBQQr
-                                        BBBq.
-                                      :J::L.
-                                     ru7i.
-                                    :usJ:
-                                   .BU..       ..
-                                  :BE       iKBBBBB
-                                  ;'     .dBBBBBBRBK
-                                 /    :vPEbSBBDSjv12
-                       .iv.     / .7IZDZU7. .SYssJv.
-                      :iUQM7   / ::7PUr....  71r.
-                     .....:uE/.  .........
-                      ....../EbL    ...
-                       ..  iPBBBB
-                         .v2uqRBBB:
-                          sj77IgBBBX
-                           rJvvIEBBBq
-                            .jY77rrLq
-                             .JULJjj.
-                                :i:.
-    Version : V.1.0
-    [ 1 ] 초 후 백신 테스트를 시작합니다.
-""")
-time.sleep(1)
-os.system("cls")
+    [ %s ] 초 후 백신 테스트를 시작합니다.
+""" %sec)
+    time.sleep(1)
+    sec=sec-1
+    os.system("cls")
+    if sec==0:
+        break
+    else:
+        pass
 print("""
                                                    QESASDDS
                                                     .BgK.
