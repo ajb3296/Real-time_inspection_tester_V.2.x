@@ -1,5 +1,7 @@
 import os
 import time
+from bs4 import BeautifulSoup
+from elementtree.ElementTree import Element, ElementTree, SubElement, dump, parse, tostring
 
 if not os.path.exists("system/Real-time_inspection_test"):
     print("Please unzip the file properly and execute it.\n\nPress the ENTER key to exit the program.")
@@ -7,13 +9,12 @@ if not os.path.exists("system/Real-time_inspection_test"):
     exit()
 
 while True:
-  if not os.path.exist("setting.xml"):
+  if not os.path.exists("setting.xml"):
     print("""Please select language:
 언어를 선택하세요:
 
 1. English - 영어
 2. 한글 - Korean
-
 """)
     language = input("언어를 선택하세요 (1/2) : ")
     if language==1 or language=="english" or language=="영어":
@@ -24,11 +25,23 @@ while True:
         break
     else:
         pass
+  else:
+      tree = elementtree.parse("setting.xml")
+      root = tree.getroot()
+      language = element.findtext("language")
+      filename = element.findtext("filename")
+      fileinside = element.findtext("fileinside")
+      if not language=="ko" or language=="en":
+          print(language)
+      print(language)
+      os.system("pause")
+      break
     
 
 os.system("title Real-time_inspection_test V.2.0")
 os.system("mode.com con cols=120 lines=40")
 num=0
+
 os.system("cls")
 
 sec=3
@@ -64,7 +77,7 @@ while True:
                             .jY77rrLq
                              .JULJjj.
                                 :i:.
-    Version : V.1.0
+    Version : V.2.0
     [ %s ] 초 후 백신 테스트를 시작합니다.
 """ %sec)
     time.sleep(1)
@@ -114,30 +127,40 @@ file = open("EICAR.TXT", 'w')
 file.write("X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*")
 file.close()
 while True:
-    if os.path.exists("EICAR.TXT"):
-            try:
-                file = open("EICAR.TXT", 'r')
-            except PermissionError:
-                print("\n\n백신이 가짜 바이러스를 탐지하고 치료하는데 걸린 시간 : 약 [ %s ] 초\n" %num)
-                os.system("pause")
-                exit()
-            eicar=file.read()
-            if not eicar=="X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*":
-                print("\n\n백신이 가짜 바이러스를 탐지하고 치료하는데 걸린 시간 : 약 [ %s ] 초\n" %num)
-                file.close()
-                os.remove("EICAR.TXT")
-                os.system("pause")
-                exit()
-    else:
-        print("\n\n백신이 가짜 바이러스를 탐지하고 제거하는데 걸린 시간 : 약 [ %s ] 초\n" %num)
-        file.close()
+    try:
+        file = open("EICAR.TXT", 'r')
+    except PermissionError:
+        print("\n\n백신이 가짜 바이러스를 탐지하고 치료하는데 걸린 시간 : 약 [ %s ] 초\n" %num)
         os.system("pause")
-        exit()
+        break
+    except OSError:
+        if language=="ko":
+            d="\n\n백신이 미끼파일을 탐지하고 치료하는데 걸린 시간 : 약 [ %s ] 초\n"%num
+        else:
+            d="\n\nTime taken for the vaccine to detect and treat the decoy file : about [ %s ] seconds.\n"%num
+        print(d)
+        os.system("pause")
+        break
+    except FileNotFoundError:
+        if language=="ko":
+            d="\n\n백신이 미끼파일을 탐지하고 치료하는데 걸린 시간 : 약 [ %s ] 초\n"%num
+        else:
+            d="\n\nTime taken for the vaccine to detect and treat the decoy file : about [ %s ] seconds.\n"%num
+        print(d)
+        os.system("pause")
+        break
+    eicar=file.read()
+    if not eicar=="X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*":
+        print("\n\n백신이 가짜 바이러스를 탐지하고 치료하는데 걸린 시간 : 약 [ %s ] 초\n" %num)
+        os.remove("EICAR.TXT")
+        os.system("pause")
+        break
     if num==10:
-        file.close()
         os.remove("EICAR.TXT")
         print("\n\n백신이 가짜 바이러스를 탐지하고 치료/제거하는데 걸리는 시간이 [ 10 ] 초가 넘었습니다.\n백신의 상태를 다시 한번 확인해 주세요.")
         os.system("pause")
-        exit()
+        break
     num=num+1
     time.sleep(1)
+file.close()
+exit()
