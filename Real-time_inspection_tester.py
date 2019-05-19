@@ -26,11 +26,13 @@ while True:
     else:
         pass
   else:
-      tree = elementtree.parse("setting.xml")
-      root = tree.getroot()
-      language = element.findtext("language")
-      filename = element.findtext("filename")
-      fileinside = element.findtext("fileinside")
+      file = open("setting.xml", "r")
+      html=file.read()
+      file.close()
+      soup = BeautifulSoup(html, 'html.parser')
+      language = soup.find("language")
+      filename = soup.find("filename")
+      fileinside = soup.find("fileinside")
       if not language=="ko" or language=="en":
           print(language)
       print(language)
