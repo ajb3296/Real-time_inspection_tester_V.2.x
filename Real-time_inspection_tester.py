@@ -1,7 +1,6 @@
 import os
 import time
 from bs4 import BeautifulSoup
-from elementtree.ElementTree import Element, ElementTree, SubElement, dump, parse, tostring
 
 if not os.path.exists("system/Real-time_inspection_test"):
     print("Please unzip the file properly and execute it.\n\nPress the ENTER key to exit the program.")
