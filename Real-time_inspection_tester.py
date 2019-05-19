@@ -34,8 +34,8 @@ while True:
       filename = soup.find("filename")
       fileinside = soup.find("fileinside")
       if not language=="ko" or language=="en":
-          print(language)
-      print(language)
+          print(language.get_text())
+      print(language.get_text())
       os.system("pause")
       break
     
