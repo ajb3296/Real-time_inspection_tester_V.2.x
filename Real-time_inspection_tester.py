@@ -60,7 +60,9 @@ if __name__=="__main__":
             language = soup.find("language")
             language = language.get_text()
             filename = soup.find("filename")
+            filename = filename.get_text()
             fileinside = soup.find("fileinside")
+            fileinside = fileinside.get_text()
         if language == "ko" or language == "en":
             break
         else:
