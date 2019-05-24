@@ -29,11 +29,13 @@ while True:
         file.close()
         soup = BeautifulSoup(html, 'html.parser')
         language = soup.find("language")
+        language = language.get_text()
         filename = soup.find("filename")
         fileinside = soup.find("fileinside")
-    if language.get_text()=="ko" or language.get_text()=="en":
-        print(language.get_text())
-    os.system("pause")
+    if language == "ko" or language == "en":
+        break
+    else:
+        print("Language error\n언어오류\n\n")
     break
     
 os.system("title Real-time_inspection_test V.2.0")
