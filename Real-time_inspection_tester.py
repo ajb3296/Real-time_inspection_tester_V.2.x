@@ -1,3 +1,8 @@
+import os
+import time
+from bs4 import BeautifulSoup
+import requests
+import urllib.request
 import zipfile
 
 if __name__=="__main__":
@@ -195,4 +200,5 @@ if __name__=="__main__":
 
 def version():
     rtitversion="2.0"
+
 
