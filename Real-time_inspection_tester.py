@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 import requests
 import urllib.request
 import zipfile
+import shutil
 
 if __name__=="__main__":
     '''
@@ -12,7 +13,7 @@ if __name__=="__main__":
         os.system("pause")
         exit()
 '''
-    os.system("title Real-time_inspection_test V.2.0")
+    os.system("title Real-time_inspection_tester V.2.0")
     os.system("mode.com con cols=120 lines=40")
 
     # 버전 확인
@@ -21,21 +22,26 @@ if __name__=="__main__":
 
     soup = BeautifulSoup(r.text, "html.parser")
     rtit = soup.find("rtit")
-    rtit=rtit.get_text()
+    rtit = rtit.get_text()
     rtitdownload = soup.find("rtitdownload")
     url = rtitdownload.get_text()
 
     if rtit=="2.0":
         print("프로그램을 새 버전으로 업데이트 해야 합니다. 자동으로 업데이트가 진행됩니다.\nYou need to update the program to a new version. The update will proceed automatically.")
-        
-        
-        urllib.request.urlretrieve(url, "update/master.zip")
+        try:
+            shutil.rmtree('update')
+            except OSError as e:
+        if e.errno == 2:
+            pass
 
-        
+    else:
+        raise
+        urllib.request.urlretrieve(url, "update/master.zip")        
         zip_ref = zipfile.ZipFile("update/master.zip", 'r')
         zip_ref.extractall("update")
         zip_ref.close()
-        os.system("call update\Real-time_inspection_tester.py")
+        os.system("call update\Real-time_inspection_tester_V.%s-master\Real-time_inspection_tester.py")
+        exit()
 
     while True:
 
@@ -183,26 +189,22 @@ if __name__=="__main__":
             print("\n\n백신이 미끼파일을 탐지하고 치료하는데 걸린 시간 : 약 [ %s ] 초\n" %num)
             break
         if num==10:
-            try:
-                os.remove(r"EICAR.TXT")
-            except PermissionError:
-                pass
-            except FileNotFoundError:
-                pass
-            except OSError:
-                pass
             print("\n\n백신이 미끼파일을 탐지하고 치료/제거하는데 걸리는 시간이 [ 10 ] 초가 넘었습니다.\n백신의 상태를 다시 한번 확인해 주세요.")
             break
         num=num+1
         time.sleep(1)
     file.close()
+    try:
+        os.remove(r"EICAR.TXT")
+    except PermissionError:
+        pass
+    except FileNotFoundError:
+        pass
+    except OSError:
+        pass
     print("\n프로그램을 종료하시려면 아무키나 누르세요.\nPress any key to exit the program.")
     os.system("pause>nul")
     exit()
 
 def version():
     rtitversion="2.0"
-
-
-
-
