@@ -8,16 +8,6 @@ import zipfile
 import requests
 import shutil
 
-# 현재 버전 확인
-file = open("system/version", 'r')
-version=file.read()
-file.close()
-
-# 업데이터 실행 확인
-file = open("system/version", 'w')
-file.write("1")
-file.close()
-
 # 최신버전/최신버전 다운로드 링크 확인
 url = "https://newpremium.github.io/version/"
 r = requests.get(url)
