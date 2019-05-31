@@ -17,6 +17,7 @@ if __name__=="__main__":
     # 기본설정
     os.system("title Real-time_inspection_tester V.2.0")
     os.system("mode.com con cols=120 lines=40")
+    version="2.0"
     print("""
                                                    QESASDDS
                                                     .BgK.
@@ -48,9 +49,9 @@ if __name__=="__main__":
                             .jY77rrLq
                              .JULJjj.
                                 :i:.
-    Version : V.2.0
+    Version : V.%s
     Loading. . .
-    """)
+    """ %version)
 
     # 버전 확인
     url = "https://newpremium.github.io/version/"
@@ -62,7 +63,7 @@ if __name__=="__main__":
     url = rtitdownload.get_text()
 
     # 업데이트 할지 안할지 결정
-    if not rtit=="2.0":
+    if not rtit==version:
         print("프로그램을 새 버전으로 업데이트 해야 합니다. 자동으로 업데이트가 진행됩니다.\nYou need to update the program to a new version. The update will proceed automatically.")
         # 폴더 비우기
         try:
@@ -155,9 +156,9 @@ if __name__=="__main__":
                             .jY77rrLq
                              .JULJjj.
                                 :i:.
-    Version : V.2.0
+    Version : V.%s
     [ %s ] 초 후 백신 테스트를 시작합니다.
-""" %sec)
+""" %(version, sec))
         time.sleep(1)
         sec=sec-1
         os.system("cls")
@@ -253,6 +254,3 @@ if __name__=="__main__":
     print("\n프로그램을 종료하시려면 아무키나 누르세요.\nPress any key to exit the program.")
     os.system("pause>nul")
     exit()
-
-def version():
-    rtitversion="2.0"
