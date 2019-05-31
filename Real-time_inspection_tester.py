@@ -7,13 +7,13 @@ import zipfile
 import shutil
 
 if __name__=="__main__":
-    '''
+    
     # 압축 상태 확인
     if not os.path.exists("system/Real-time_inspection_test"):
         print("Please unzip the file properly and execute it.\n\nPress the ENTER key to exit the program.")
         os.system("pause")
         exit()
-'''
+
     # 기본설정
     os.system("title Real-time_inspection_tester V.2.0")
     os.system("mode.com con cols=120 lines=40")
@@ -62,7 +62,7 @@ if __name__=="__main__":
     url = rtitdownload.get_text()
 
     # 업데이트 할지 안할지 결정
-    if rtit=="2.0":
+    if not rtit=="2.0":
         print("프로그램을 새 버전으로 업데이트 해야 합니다. 자동으로 업데이트가 진행됩니다.\nYou need to update the program to a new version. The update will proceed automatically.")
         # 폴더 비우기
         try:
