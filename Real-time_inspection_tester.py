@@ -55,24 +55,9 @@ if __name__=="__main__":
     Version : V.%s
     Loading. . .
     """ %version)
-    try:
-        file = open("system/version", 'r')
-    except FileNotFoundError:
-        file.write(version)
-        file.close()
-    except OSError:
-        file.write(version)
-        file.close()
-    file = open("system/version", 'r')
-    aaa=file.read()
-    file.close()
-    if aaa==version:
-        file = open("system/version", 'w')
-        file.write(version)
-        file.close()
-        os.system("start updater.py")
-    else:
-        pass
+    
+    os.system("call updater.py")
+    
 
     # 버전 확인
 
