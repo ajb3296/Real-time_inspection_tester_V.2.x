@@ -1,3 +1,6 @@
+#-*- coding: utf-8 -*-
+
+# 모듈 임포트
 import os
 import urllib.request
 from bs4 import BeautifulSoup
@@ -5,10 +8,17 @@ import zipfile
 import requests
 import shutil
 
+# 현재 버전 확인
 file = open("system/version", 'r')
 version=file.read()
 file.close()
 
+# 업데이터 실행 확인
+file = open("system/version", 'w')
+file.write("1")
+file.close()
+
+# 최신버전/최신버전 다운로드 링크 확인
 url = "https://newpremium.github.io/version/"
 r = requests.get(url)
 soup = BeautifulSoup(r.text, "html.parser")
@@ -34,7 +44,31 @@ if not rtit==version:
     zip_ref.extractall("/")
     zip_ref.close()
 
-    # 불러오기
-    os.system("cls")
-    os.system("call Real-time_inspection_tester_V.%s-master\Real-time_inspection_tester.py" %rtit)
-    exit()
+    # 업데이트 패키지 제거
+    os.remove("master.zip")
+
+    # 옮기기
+    filename = 'README.md'
+    src = 'Real-time_inspection_tester_V.%s-master/'%rtit
+    dir = '/'
+    shutil.move(src + filename, dir + filename)
+    filename = 'system'
+    src = 'Real-time_inspection_tester_V.%s-master/'%rtit
+    dir = '/'
+    shutil.move(src + filename, dir + filename)
+    filename = 'Real-time_inspection_tester.py'
+    src = 'Real-time_inspection_tester_V.%s-master/'%rtit
+    dir = '/'
+    shutil.move(src + filename, dir + filename)
+    filename = 'LICENSE'
+    src = 'Real-time_inspection_tester_V.%s-master/'%rtit
+    dir = '/'
+    shutil.move(src + filename, dir + filename)
+    filename = 'system'
+    src = 'Real-time_inspection_tester_V.%s-master/'%rtit
+    dir = '/'
+    shutil.move(src + filename, dir + filename)
+    os.system("start Real-time_inspection_tester.py")
+
+else:
+    pass
