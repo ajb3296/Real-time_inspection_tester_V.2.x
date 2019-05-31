@@ -1,3 +1,6 @@
+#-*- coding: utf-8 -*-
+
+# 모듈 임포트
 import os
 import time
 from bs4 import BeautifulSoup
@@ -7,13 +10,13 @@ import zipfile
 import shutil
 
 if __name__=="__main__":
-    
+    '''
     # 압축 상태 확인
     if not os.path.exists("system/Real-time_inspection_test"):
         print("Please unzip the file properly and execute it.\n\nPress the ENTER key to exit the program.")
         os.system("pause")
         exit()
-
+'''
     # 기본설정
     os.system("title Real-time_inspection_tester V.2.0")
     os.system("mode.com con cols=120 lines=40")
@@ -52,37 +55,26 @@ if __name__=="__main__":
     Version : V.%s
     Loading. . .
     """ %version)
+    try:
+        file = open("system/version", 'r')
+    except FileNotFoundError:
+        file.write(version)
+        file.close()
+    except OSError:
+        file.write(version)
+        file.close()
+    file = open("system/version", 'r')
+    aaa=file.read()
+    file.close()
+    if aaa==version:
+        file = open("system/version", 'w')
+        file.write(version)
+        file.close()
+        os.system("start updater.py")
+    else:
+        pass
 
     # 버전 확인
-    url = "https://newpremium.github.io/version/"
-    r = requests.get(url)
-    soup = BeautifulSoup(r.text, "html.parser")
-    rtit = soup.find("rtit")
-    rtit = rtit.get_text()
-    rtitdownload = soup.find("rtitdownload")
-    url = rtitdownload.get_text()
-
-    # 업데이트 할지 안할지 결정
-    if not rtit==version:
-        print("프로그램을 새 버전으로 업데이트 해야 합니다. 자동으로 업데이트가 진행됩니다.\nYou need to update the program to a new version. The update will proceed automatically.")
-        # 폴더 비우기
-        try:
-            shutil.rmtree('update')
-        except FileNotFoundError:
-            os.mkdir("update")
-
-        # 최신버전 다운로드
-        urllib.request.urlretrieve(url, "update/master.zip")
-
-        # 압축풀기
-        zip_ref = zipfile.ZipFile("update/master.zip", 'r')
-        zip_ref.extractall("update/")
-        zip_ref.close()
-
-        # 불러오기
-        os.system("cls")
-        os.system("call update\Real-time_inspection_tester_V.%s-master\Real-time_inspection_tester.py" %rtit)
-        exit()
 
     while True:
 
@@ -202,12 +194,12 @@ if __name__=="__main__":
 """)
 
     # Core algorithm
-    file = open("EICAR.TXT", 'w')
-    file.write("""X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*""")
+    file = open(filename, 'w')
+    file.write(fileinside)
     file.close()
     while True:
         try:
-            file = open("EICAR.TXT", 'r')
+            file = open(filename, 'r')
         except PermissionError:
             if language=="ko":
                 print("\n\n백신이 미끼파일을 탐지하고 치료하는데 걸린 시간 : 약 [ %s ] 초\n" %num)
@@ -227,7 +219,7 @@ if __name__=="__main__":
                 print("\n\nTime taken for the vaccine to detect and treat the decoy file : about [ %s ] seconds.\n" %num)
             break
         eicar=file.read()
-        if not eicar=="X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*":
+        if not eicar==fileinside:
             if language=="ko":
                 print("\n\n백신이 미끼파일을 탐지하고 치료하는데 걸린 시간 : 약 [ %s ] 초\n" %num)
             else:
@@ -244,7 +236,7 @@ if __name__=="__main__":
         time.sleep(1)
     file.close()
     try:
-        os.remove("EICAR.TXT")
+        os.remove(filename)
     except PermissionError:
         pass
     except FileNotFoundError:
