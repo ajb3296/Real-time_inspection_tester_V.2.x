@@ -7,40 +7,80 @@ import zipfile
 import shutil
 
 if __name__=="__main__":
-    
+    '''
+    # 압축 상태 확인
     if not os.path.exists("system/Real-time_inspection_test"):
         print("Please unzip the file properly and execute it.\n\nPress the ENTER key to exit the program.")
         os.system("pause")
         exit()
-
+'''
+    # 기본설정
     os.system("title Real-time_inspection_tester V.2.0")
     os.system("mode.com con cols=120 lines=40")
+    print("""
+                                                   QESASDDS
+                                                    .BgK.
+                                                   :BBEE.
+                                               JBQYBBBsPAW
+                                                 EBBPi
+                                               .BBPP.
+                                              vBBgS
+                                             bBBgi
+                                            BBM2:
+                                          iBBPS
+                                         SBQQr
+                                        BBBq.
+                                      :J::L.
+                                     ru7i.
+                                    :usJ:
+                                   .BU..       ..
+                                  :BE       iKBBBBB
+                                  ;'     .dBBBBBBRBK
+                                 /    :vPEbSBBDSjv12
+                       .iv.     / .7IZDZU7. .SYssJv.
+                      :iUQM7   / ::7PUr....  71r.
+                     .....:uE/.  .........
+                      ....../EbL    ...
+                       ..  iPBBBB
+                         .v2uqRBBB:
+                          sj77IgBBBX
+                           rJvvIEBBBq
+                            .jY77rrLq
+                             .JULJjj.
+                                :i:.
+    Version : V.2.0
+    Loading. . .
+    """)
 
     # 버전 확인
     url = "https://newpremium.github.io/version/"
     r = requests.get(url)
-
     soup = BeautifulSoup(r.text, "html.parser")
     rtit = soup.find("rtit")
     rtit = rtit.get_text()
     rtitdownload = soup.find("rtitdownload")
     url = rtitdownload.get_text()
 
-    if not rtit=="2.0":
+    # 업데이트 할지 안할지 결정
+    if rtit=="2.0":
         print("프로그램을 새 버전으로 업데이트 해야 합니다. 자동으로 업데이트가 진행됩니다.\nYou need to update the program to a new version. The update will proceed automatically.")
+        # 폴더 비우기
         try:
             shutil.rmtree('update')
-            except OSError as e:
-        if e.errno == 2:
-            pass
+        except FileNotFoundError:
+            os.mkdir("update")
 
-    else:
-        raise
-        urllib.request.urlretrieve(url, "update/master.zip")        
+        # 최신버전 다운로드
+        urllib.request.urlretrieve(url, "update/master.zip")
+
+        # 압축풀기
         zip_ref = zipfile.ZipFile("update/master.zip", 'r')
-        zip_ref.extractall("update")
+        zip_ref.extractall("update/")
         zip_ref.close()
-        os.system("call update\Real-time_inspection_tester_V.%s-master\Real-time_inspection_tester.py")
+
+        # 불러오기
+        os.system("cls")
+        os.system("call update\Real-time_inspection_tester_V.%s-master\Real-time_inspection_tester.py" %rtit)
         exit()
 
     while True:
@@ -75,12 +115,13 @@ if __name__=="__main__":
             print("Language error\n언어오류\n\nModify the language settings of the setting.xml file(en/ko)\nsetting.xml 파일의 언어설정을 수정하세요(en/ko)")
             os.system("pause")
             exit()
-        break
+        
 
     num=0
 
     os.system("cls")
 
+    # 메인 페이지
     sec=3
     while True:
         print("""
@@ -161,7 +202,7 @@ if __name__=="__main__":
 
     # Core algorithm
     file = open("EICAR.TXT", 'w')
-    file.write("X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*")
+    file.write("""X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*""")
     file.close()
     while True:
         try:
@@ -172,13 +213,13 @@ if __name__=="__main__":
             else:
                 print("\n\nTime taken for the vaccine to detect and treat the decoy file : about [ %s ] seconds.\n" %num)
             break
-        except OSError:
+        except FileNotFoundError:
             if language=="ko":
                 print("\n\n백신이 미끼파일을 탐지하고 치료하는데 걸린 시간 : 약 [ %s ] 초\n" %num)
             else:
                 print("\n\nTime taken for the vaccine to detect and treat the decoy file : about [ %s ] seconds.\n" %num)
             break
-        except FileNotFoundError:
+        except OSError:
             if language=="ko":
                 print("\n\n백신이 미끼파일을 탐지하고 치료하는데 걸린 시간 : 약 [ %s ] 초\n" %num)
             else:
@@ -192,10 +233,11 @@ if __name__=="__main__":
             print("\n\n백신이 미끼파일을 탐지하고 치료/제거하는데 걸리는 시간이 [ 10 ] 초가 넘었습니다.\n백신의 상태를 다시 한번 확인해 주세요.")
             break
         num=num+1
+        file.close()
         time.sleep(1)
     file.close()
     try:
-        os.remove(r"EICAR.TXT")
+        os.remove("EICAR.TXT")
     except PermissionError:
         pass
     except FileNotFoundError:
