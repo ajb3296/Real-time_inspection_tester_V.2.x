@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Language -->
+<!-- Language (언어) -->
 <language>ko</language>
 
-<!-- File name -->
+<!-- File name (미끼파일 이름) -->
 <filename>EICAR.TXT</filename>
 
-<!-- File internal code -->
+<!-- File internal code (미끼파일 내부 코드) -->
+<!-- default value  (기본값) : X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H* -->
 <fileinside>X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*</fileinside>
