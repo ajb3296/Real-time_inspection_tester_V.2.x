@@ -143,6 +143,10 @@ if __name__=="__main__":
             break
         else:
             pass
+    if language=="ko":
+        chackmsg="체크중. . .\n    핵심 알고리즘 실행. . ."
+    else:
+        chackmsg="Checking. . .\n    execution of core algorithm. . ."
     print("""
                                                    QESASDDS
                                                     .BgK.
@@ -174,9 +178,8 @@ if __name__=="__main__":
                             .jY77rrLq
                              .JULJjj.
                                 :i:.
-    체크중. . .
-    핵심 알고리즘 실행. . .
-""")
+    %s
+""" %chackmsg)
 
     # Core algorithm
     file = open(filename, 'w')
@@ -228,6 +231,9 @@ if __name__=="__main__":
         pass
     except OSError:
         pass
-    print("\n프로그램을 종료하시려면 아무키나 누르세요.\nPress any key to exit the program.")
+    if language=="ko":
+        print("\n프로그램을 종료하시려면 아무키나 누르세요.")
+    else:
+        print("\nPress any key to exit the program.")
     os.system("pause>nul")
-    exit()
+exit()
