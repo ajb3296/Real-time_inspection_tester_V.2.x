@@ -56,28 +56,19 @@ if __name__=="__main__":
     Loading. . .
     """ %version)
     
-    os.system("call updater.py")
-    
-
     # 버전 확인
 
     while True:
 
         if not os.path.exists("setting.xml"):
-            print("""Please select language:
-언어를 선택하세요:
-1. English - 영어
-2. 한글 - Korean
-""")
-            language = input("언어를 선택하세요 (1/2) : ")
-            if language==1 or language=="english" or language=="영어":
-                language="en"
-            elif language==2 or language=="한국어" or language=="한글" or language=="korean" or language=="korea":
-                language="ko"
-            else:
-                pass
+            print("""언어를 선택하세요
+Please select a language
+
+1. 한글 - Korean
+2. English - 영어""")
+            
         else:
-            file = open("setting.xml", "r")
+            file = open("setting.xml", "r", encoding='UTF-8')
             html=file.read()
             file.close()
             soup = BeautifulSoup(html, 'html.parser')
@@ -94,14 +85,15 @@ if __name__=="__main__":
             os.system("pause")
             exit()
         
-
-    num=0
-
     os.system("cls")
 
     # 메인 페이지
     sec=3
     while True:
+        if language=="ko":
+            loadmsg="[ %s ] 초 후 백신 테스트를 시작합니다." %sec
+        else:
+            loadmsg="Start the vaccine test in [ %s ] seconds." %sec
         print("""
                                                    QESASDDS
                                                     .BgK.
@@ -134,8 +126,8 @@ if __name__=="__main__":
                              .JULJjj.
                                 :i:.
     Version : V.%s
-    [ %s ] 초 후 백신 테스트를 시작합니다.
-""" %(version, sec))
+    %s
+""" %(version, loadmsg))
         time.sleep(1)
         sec=sec-1
         os.system("cls")
@@ -180,7 +172,7 @@ if __name__=="__main__":
                                 :i:.
     %s
 """ %chackmsg)
-
+    num=0
     # Core algorithm
     file = open(filename, 'w')
     file.write(fileinside)
