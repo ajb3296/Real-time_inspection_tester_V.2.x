@@ -55,17 +55,14 @@ if __name__=="__main__":
     Version : V.%s
     Loading. . .
     """ %version)
-    
-    # 버전 확인
 
     while True:
 
         if not os.path.exists("setting.xml"):
-            print("""언어를 선택하세요
-Please select a language
-
-1. 한글 - Korean
-2. English - 영어""")
+            print("""ERROR!
+설정파일이 존재하지 않습니다!
+Setup file does not exist!
+""")
             
         else:
             file = open("setting.xml", "r", encoding='UTF-8')
