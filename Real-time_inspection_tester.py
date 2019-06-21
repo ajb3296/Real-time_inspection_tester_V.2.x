@@ -10,13 +10,13 @@ import zipfile
 import shutil
 
 if __name__=="__main__":
-    '''
+    
     # 압축 상태 확인
     if not os.path.exists("system/Real-time_inspection_test"):
         print("Please unzip the file properly and execute it.\n\nPress the ENTER key to exit the program.")
         os.system("pause")
         exit()
-'''
+
     # 기본설정
     os.system("title Real-time_inspection_tester V.2.0")
     os.system("mode.com con cols=120 lines=40")
