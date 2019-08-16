@@ -57,13 +57,15 @@ if __name__=="__main__":
     """ %version)
 
     while True:
-
+        
+        # 설정파일 존재확인
         if not os.path.exists("setting.xml"):
             print("""ERROR!
 설정파일이 존재하지 않습니다!
 Setup file does not exist!
 """)
-            
+        
+        # 설정파일이 존재할 경우 읽어오기
         else:
             file = open("setting.xml", "r", encoding='UTF-8')
             html=file.read()
@@ -75,8 +77,12 @@ Setup file does not exist!
             filename = filename.get_text()
             fileinside = soup.find("fileinside")
             fileinside = fileinside.get_text()
+
+        # 프로그램이 사용 가능한 언어인지 확인
         if language == "ko" or language == "en":
             break
+        
+        # 지원하지 않는 언어일 경우
         else:
             print("Language error\n언어오류\n\nModify the language settings of the setting.xml file(en/ko)\nsetting.xml 파일의 언어설정을 수정하세요(en/ko)")
             os.system("pause")
@@ -133,7 +139,7 @@ Setup file does not exist!
         else:
             pass
     if language=="ko":
-        chackmsg="체크중. . .\n    핵심 알고리즘 실행. . ."
+        chackmsg="체크중. . .\n    백신 테스트 실행. . ."
     else:
         chackmsg="Checking. . .\n    execution of core algorithm. . ."
     print("""
@@ -170,19 +176,23 @@ Setup file does not exist!
     %s
 """ %chackmsg)
     num=0
-    # Core algorithm
+    # 미끼파일 작성
     file = open(filename, 'w')
     file.write(fileinside)
     file.close()
     while True:
         try:
             file = open(filename, 'r')
+
+        # 백신이 미끼파일의 권한을 바꿀 경우
         except PermissionError:
             if language=="ko":
                 print("\n\n백신이 미끼파일을 탐지하고 치료하는데 걸린 시간 : 약 [ %s ] 초\n" %num)
             else:
                 print("\n\nTime taken for the vaccine to detect and treat the decoy file : about [ %s ] seconds.\n" %num)
             break
+        
+        # 미끼파일이 존재하지 않을 경우
         except FileNotFoundError:
             if language=="ko":
                 print("\n\n백신이 미끼파일을 탐지하고 치료하는데 걸린 시간 : 약 [ %s ] 초\n" %num)
@@ -195,6 +205,8 @@ Setup file does not exist!
             else:
                 print("\n\nTime taken for the vaccine to detect and treat the decoy file : about [ %s ] seconds.\n" %num)
             break
+
+        # 백신이 미끼파일 내부 글자를 수정했을 경우
         eicar=file.read()
         if not eicar==fileinside:
             if language=="ko":
@@ -202,6 +214,8 @@ Setup file does not exist!
             else:
                 print("\n\nTime taken for the vaccine to detect and treat the decoy file : about [ %s ] seconds.\n" %num)
             break
+
+        # Time Out (10초)
         if num==10:
             if language=="ko":
                 print("\n\n백신이 미끼파일을 탐지하고 치료/제거하는데 걸리는 시간이 [ 10 ] 초가 넘었습니다.\n백신의 상태를 다시 한번 확인해 주세요.")
@@ -212,6 +226,8 @@ Setup file does not exist!
         file.close()
         time.sleep(1)
     file.close()
+
+    # 미끼파일 삭제
     try:
         os.remove(filename)
     except PermissionError:
@@ -220,6 +236,8 @@ Setup file does not exist!
         pass
     except OSError:
         pass
+
+    # 프로그램 종료
     if language=="ko":
         print("\n프로그램을 종료하시려면 아무키나 누르세요.")
     else:
