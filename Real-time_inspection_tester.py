@@ -20,7 +20,10 @@ if __name__=="__main__":
     # 기본설정
     os.system("title Real-time_inspection_tester V.2.0")
     os.system("mode.com con cols=120 lines=40")
+
+    # 버전 설정
     version="2.0"
+
     print("""
                                                    QESASDDS
                                                     .BgK.
@@ -57,36 +60,65 @@ if __name__=="__main__":
     """ %version)
 
     while True:
-        
+        # For Portable
         # 설정파일 존재확인
         if not os.path.exists("setting.xml"):
-            print("""ERROR!
-설정파일이 존재하지 않습니다!
-Setup file does not exist!
+            print("""언어를 선택하세요
+Please select a language
+1. 한글 - Korean
+2. English - 영어
 """)
-        
-        # 설정파일이 존재할 경우 읽어오기
-        else:
-            file = open("setting.xml", "r", encoding='UTF-8')
-            html=file.read()
-            file.close()
-            soup = BeautifulSoup(html, 'html.parser')
-            language = soup.find("language")
-            language = language.get_text()
-            filename = soup.find("filename")
-            filename = filename.get_text()
-            fileinside = soup.find("fileinside")
-            fileinside = fileinside.get_text()
 
-        # 프로그램이 사용 가능한 언어인지 확인
-        if language == "ko" or language == "en":
-            break
-        
-        # 지원하지 않는 언어일 경우
+            language = input("<1/2> : ")
+
+            if language == '1' or language == 'ko' or language == '한글' or language == 'korean':
+                language="ko"
+                break
+            elif language == '2' or language == 'en' or language == '영어' or language == "english":
+                language="en"
+                break
+            else:
+                pass
         else:
-            print("Language error\n언어오류\n\nModify the language settings of the setting.xml file(en/ko)\nsetting.xml 파일의 언어설정을 수정하세요(en/ko)")
-            os.system("pause")
-            exit()
+            break
+
+    # 설정파일 만들기
+    if language == "ko" or language == "en":
+        file = open("setting.xml", "w", encoding='UTF-8')
+        file.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+        file.write("<!-- Language (언어) -->\n")
+        file.write("<language>%s</language>\n" %language)
+        file.write("\n")
+        file.write("<!-- File name (미끼파일 이름) -->\n")
+        file.write("<filename>EICAR.TXT</filename>\n")
+        file.write("\n")
+        file.write("<!-- File internal code (미끼파일 내부 코드) -->\n")
+        file.write("<!-- default value  (기본값) : X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H* -->\n")
+        file.write("<fileinside>X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*</fileinside>\n")
+        file.close()
+        
+    # 설정파일이 존재할 경우 읽어오기
+    if os.path.exists("setting.xml"):
+        file = open("setting.xml", "r", encoding='UTF-8')
+        html=file.read()
+        file.close()
+        soup = BeautifulSoup(html, 'html.parser')
+        language = soup.find("language")
+        language = language.get_text()
+        filename = soup.find("filename")
+        filename = filename.get_text()
+        fileinside = soup.find("fileinside")
+        fileinside = fileinside.get_text()
+
+    # 프로그램이 사용 가능한 언어인지 확인
+    if language == "ko" or language == "en":
+        pass
+        
+    # 지원하지 않는 언어일 경우
+    else:
+        print("Language error\n언어오류\n\nModify the language settings of the setting.xml file(en/ko)\nsetting.xml 파일의 언어설정을 수정하세요(en/ko)")
+        os.system("pause")
+        exit()
         
     os.system("cls")
 
@@ -141,7 +173,7 @@ Setup file does not exist!
     if language=="ko":
         chackmsg="체크중. . .\n    백신 테스트 실행. . ."
     else:
-        chackmsg="Checking. . .\n    execution of core algorithm. . ."
+        chackmsg="Checking. . .\n    Run a vaccine test. . ."
     print("""
                                                    QESASDDS
                                                     .BgK.
