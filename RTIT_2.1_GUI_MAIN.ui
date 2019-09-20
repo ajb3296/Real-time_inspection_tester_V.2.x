@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>875</width>
+    <height>598</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>540</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Github</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Logo">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>30</y>
+     <width>441</width>
+     <height>441</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>
+                                                   QESASDDS
+                                                    .BgK.
+                                                   :BBEE.
+                                               JBQYBBBsPAW
+                                                 EBBPi
+                                               .BBPP.
+                                              vBBgS
+                                             bBBgi
+                                            BBM2:
+                                          iBBPS
+                                         SBQQr
+                                        BBBq.
+                                      :J::L.
+                                     ru7i.
+                                    :usJ:
+                                   .BU..       ..
+                                  :BE       iKBBBBB
+                                  ;'     .dBBBBBBRBK
+                                 /    :vPEbSBBDSjv12
+                       .iv.     / .7IZDZU7. .SYssJv.
+                      :iUQM7   / ::7PUr....  71r.
+                     .....:uE/.  .........
+                      ....../EbL    ...
+                       ..  iPBBBB
+                         .v2uqRBBB:
+                          sj77IgBBBX
+                           rJvvIEBBBq
+                            .jY77rrLq
+                             .JULJjj.
+                                :i:.</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>250</y>
+     <width>431</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>PMingLiU-ExtB</family>
+    </font>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt;&quot;&gt;Real Time inspection tester V.2.0&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>750</x>
+     <y>540</y>
+     <width>101</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::ActionsContextMenu</enum>
+   </property>
+   <property name="text">
+    <string>Start</string>
+   </property>
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
