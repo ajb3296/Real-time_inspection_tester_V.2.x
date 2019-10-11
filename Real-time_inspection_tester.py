@@ -9,11 +9,11 @@ import urllib.request
 import zipfile
 import shutil
 
-if __name__=="__main__":
+if __name__ == "__main__":
     
     # 압축 상태 확인
     if not os.path.exists("system/Real-time_inspection_test"):
-        print("Please unzip the file properly and execute it.\n\nPress the ENTER key to exit the program.")
+        print("    Please unzip the file properly and execute it.\n\n    Press the ENTER key to exit the program.")
         os.system("pause")
         exit()
 
@@ -22,7 +22,7 @@ if __name__=="__main__":
     os.system("mode.com con cols=120 lines=40")
 
     # 버전 설정
-    version="2.0"
+    version = "2.0"
 
     print("""
                                                    QESASDDS
@@ -59,7 +59,7 @@ if __name__=="__main__":
     Loading. . .
     """ %version)
 
-    language="language"
+    language = "language"
     while True:
         # For Portable
         # 설정파일 존재확인
@@ -98,8 +98,8 @@ Please select a language
         
     # 설정파일이 존재할 경우 읽어오기
     if os.path.exists("setting.xml"):
-        file = open("setting.xml", "r", encoding='UTF-8')
-        html=file.read()
+        file = open("setting.xml", "r", encoding = 'UTF-8')
+        html = file.read()
         file.close()
         soup = BeautifulSoup(html, 'html.parser')
         language = soup.find("language")
@@ -122,12 +122,12 @@ Please select a language
     os.system("cls")
 
     # 메인 페이지
-    sec=3
+    sec = 3
     while True:
-        if language=="ko":
-            loadmsg="[ %s ] 초 후 백신 테스트를 시작합니다." %sec
+        if language == "ko":
+            loadmsg = "[ %s ] 초 후 백신 테스트를 시작합니다." %sec
         else:
-            loadmsg="Start the vaccine test in [ %s ] seconds." %sec
+            loadmsg = "Start the vaccine test in [ %s ] seconds." %sec
         print("""
                                                    QESASDDS
                                                     .BgK.
@@ -163,16 +163,16 @@ Please select a language
     %s
 """ %(version, loadmsg))
         time.sleep(1)
-        sec=sec-1
+        sec = sec-1
         os.system("cls")
-        if sec==0:
+        if sec == 0:
             break
         else:
             pass
-    if language=="ko":
-        chackmsg="체크중. . .\n    백신 테스트 실행. . ."
+    if language == "ko":
+        chackmsg = "체크중. . .\n    백신 테스트 실행. . ."
     else:
-        chackmsg="Checking. . .\n    Run a vaccine test. . ."
+        chackmsg = "Checking. . .\n    Run a vaccine test. . ."
     print("""
                                                    QESASDDS
                                                     .BgK.
@@ -206,7 +206,7 @@ Please select a language
                                 :i:.
     %s
 """ %chackmsg)
-    num=0
+    num = 0
     # 미끼파일 작성
     file = open(filename, 'w')
     file.write(fileinside)
@@ -217,7 +217,7 @@ Please select a language
 
         # 백신이 미끼파일의 권한을 바꿀 경우
         except PermissionError:
-            if language=="ko":
+            if language == "ko":
                 print("\n\n백신이 미끼파일을 탐지하고 치료하는데 걸린 시간 : 약 [ %s ] 초\n" %num)
             else:
                 print("\n\nTime taken for the vaccine to detect and treat the decoy file : about [ %s ] seconds.\n" %num)
@@ -225,35 +225,35 @@ Please select a language
         
         # 미끼파일이 존재하지 않을 경우
         except FileNotFoundError:
-            if language=="ko":
+            if language == "ko":
                 print("\n\n백신이 미끼파일을 탐지하고 치료하는데 걸린 시간 : 약 [ %s ] 초\n" %num)
             else:
                 print("\n\nTime taken for the vaccine to detect and treat the decoy file : about [ %s ] seconds.\n" %num)
             break
         except OSError:
-            if language=="ko":
+            if language == "ko":
                 print("\n\n백신이 미끼파일을 탐지하고 치료하는데 걸린 시간 : 약 [ %s ] 초\n" %num)
             else:
                 print("\n\nTime taken for the vaccine to detect and treat the decoy file : about [ %s ] seconds.\n" %num)
             break
 
         # 백신이 미끼파일 내부 글자를 수정했을 경우
-        eicar=file.read()
+        eicar = file.read()
         if not eicar==fileinside:
-            if language=="ko":
+            if language == "ko":
                 print("\n\n백신이 미끼파일을 탐지하고 치료하는데 걸린 시간 : 약 [ %s ] 초\n" %num)
             else:
                 print("\n\nTime taken for the vaccine to detect and treat the decoy file : about [ %s ] seconds.\n" %num)
             break
 
         # Time Out (10초)
-        if num==10:
-            if language=="ko":
+        if num == 10:
+            if language == "ko":
                 print("\n\n백신이 미끼파일을 탐지하고 치료/제거하는데 걸리는 시간이 [ 10 ] 초가 넘었습니다.\n백신의 상태를 다시 한번 확인해 주세요.")
             else:
                 print("It took more than [ 10 ] seconds for the vaccine to detect and clean/remove the decoy file.\nPlease check the status of the vaccine again.")
             break
-        num=num+1
+        num = num+1
         file.close()
         time.sleep(1)
     file.close()
@@ -269,7 +269,7 @@ Please select a language
         pass
 
     # 프로그램 종료
-    if language=="ko":
+    if language == "ko":
         print("\n프로그램을 종료하시려면 아무키나 누르세요.")
     else:
         print("\nPress any key to exit the program.")
